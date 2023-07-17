@@ -5,23 +5,32 @@
       <div class="column has-text-centered"><img src="./assets/logo-min.png" /></div>
       <div class="column"><ProfilePicture /></div>
     </header>
+    <HoursPerDay />
+    
   </div>
 </template>
 
 <script>
 import ProfilePicture from './components/ProfilePicture.vue';
+import HoursPerDay from './components/HoursPerDay.vue';
+
+
 
 export default {
   name: 'App',
   components: {
-    ProfilePicture
+    ProfilePicture,
+    HoursPerDay
+    
   }
 }
 </script>
 
 <style scoped>
 .app {
-background-color: #DBE9F6;
+      background-color: #DBE9F6;
+    color: #000;
+    font-family: 'Roboto', sans-serif;
 }
   img {
     width: 75px;
