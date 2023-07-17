@@ -1,26 +1,31 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="app">
+    <header class="columns is-vcentered">
+      <div class="column has-text-centered"><img src="./assets/logout.jpeg" /></div>
+      <div class="column has-text-centered"><img src="./assets/logo-min.png" /></div>
+      <div class="column"><ProfilePicture /></div>
+    </header>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import ProfilePicture from './components/ProfilePicture.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    ProfilePicture
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style scoped>
+.app {
+background-color: #DBE9F6;
 }
+  img {
+    width: 75px;
+    border-radius: 50%;
+    border: solid 1px black;
+  }
 </style>
