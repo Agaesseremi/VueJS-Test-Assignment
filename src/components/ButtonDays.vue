@@ -21,9 +21,9 @@ export default {
 };
 </script>
 <template>
-  <div class="columns ">
+  <div class="columns is-flex-mobile">
     <Button
-      v-for="n in 5"
+      v-for="n in 4"
       :key="n"
       class="column is-one-fifth time flex flex-wrap justify-content-center align-items-center button-days" 
       :class="{ 'active': activeButton === n }"

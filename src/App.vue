@@ -1,10 +1,11 @@
 <template>
   <div class="app">
-    <header class=" header columns is-vcentered">
+    <header class=" header columns is-flex-mobile is-vcentered">
       <div class="column has-text-centered"><img src="./assets/logout.jpeg" /></div>
       <div class="column has-text-centered"><img src="./assets/logo-min.png" /></div>
       <div class="column"><ProfilePicture /></div>
     </header>
+    <ButtonMonth />
     <ButtonDays />
     <HoursPerDay />
     
@@ -14,7 +15,8 @@
 <script>
 import ProfilePicture from './components/ProfilePicture.vue';
 import HoursPerDay from './components/HoursPerDay.vue';
-import ButtonDays from './components/ButtonDays.vue'
+import ButtonDays from './components/ButtonDays.vue';
+import ButtonMonth from './components/ButtonMonth.vue';
 
 
 
@@ -23,7 +25,8 @@ export default {
   components: {
     ProfilePicture,
     HoursPerDay,
-    ButtonDays
+    ButtonDays,
+    ButtonMonth
     
   }
 }
