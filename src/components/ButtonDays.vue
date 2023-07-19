@@ -21,68 +21,38 @@ export default {
 };
 </script>
 <template>
-  <div class="columns is-flex-mobile">
-    <Button
-      v-for="n in 4"
-      :key="n"
-      class="column is-one-fifth time flex flex-wrap justify-content-center align-items-center button-days" 
-      :class="{ 'active': activeButton === n }"
-      @click="toggleStyle(n)"
-    >
-      <div class="columns">
-        <h3 class="m-0 column text-number text-2xl">
+  <div class="flex mb-5">
+<button
+  v-for="n in 4"
+  :key="n"
+  class="flex-1 button-days bg-white border border-gray-300 rounded-full shadow-md"
+  :class="{ 'active': activeButton === n }"
+  @click="toggleStyle(n)"
+>
+        <p class="text-number">
           {{
             moment()
               .add(n - 1, 'days')
               .format('DD')
           }}
-        </h3>
-        <p class="text-days column m-0">
+        </p>
+        <p class="text-days">
           {{
             moment()
               .add(n - 1, 'days')
               .format('ddd')
           }}
         </p>
-      </div>
-    </Button>
+    </button>
   </div>
 </template>
 
-
 <style scoped>
-.button-days {
-  transform: rotate(90deg);
-  margin: auto;
-  height: 4rem;
-  max-width: 5rem;
-  background: white;
-  border-radius: 40px 40px 40px 40px;
-  padding: 10px 15px;
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s ease; 
-  margin-bottom: 3rem;
-}
-.text-number{
-    transform: rotate(-90deg);
-    font-size: 18px;
-    color:blue;
-    font-weight:bold;
-}
 
-.text-days{
-    transform: rotate(-90deg);
-    color:blue;
-}
-
-.button-days:hover {
-  background: #f0f0f0; 
-}
 
 .active.button-days {
   background-color: blue;
-  color:white;
+  color: white;
 }
 
 .active .text-number {
@@ -92,9 +62,4 @@ export default {
 .active .text-days {
   color: white;
 }
-
-
-
-
-
 </style>

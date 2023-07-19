@@ -1,9 +1,8 @@
 <template>
   <div class="container">
-    <div class="content has-text-centered">
-      <img class="ProfilePicture" src="../assets/profilePicture.png" alt="Profile Picture">
-      <p class="name">Rémi</p>
-      <p class="lastname">Agaësse</p>
+    <div class="flex justify-center items-center">
+      <img class="profile-picture" src="../assets/profilePicture.png" alt="Profile Picture" />
+      <p>Rémi Agaësse</p>
     </div>
   </div>
 </template>
@@ -15,9 +14,14 @@ export default {
 </script>
 
 <style scoped>
-  .ProfilePicture {
-    width: 75px;
-    border-radius: 50%;
-    border: solid 1px black;
-  }
+.profile-picture {
+  width: 3rem;
+  border-radius: 100%;
+  border: solid 1px black;
+  cursor: pointer;
+}
+
+.content {
+  margin-top: 10px;
+}
 </style>
