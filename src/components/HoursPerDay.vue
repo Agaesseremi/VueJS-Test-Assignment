@@ -40,11 +40,11 @@ export default {
             "members": [
               {
                 "name": "Mike",
-                "avatar_url": "https://reqres.in/img/faces/3-image.jpg",
+                "avatar_url": "https://reqres.in/img/faces/1-image.jpg",
               },
               {
                 "name": "Anita",
-                "avatar_url": "https://reqres.in/img/faces/3-image.jpg",
+                "avatar_url": "https://reqres.in/img/faces/2-image.jpg",
               },
             ]
           },
@@ -57,11 +57,11 @@ export default {
             "members": [
               {
                 "name": "Anita",
-                "avatar_url": "https://reqres.in/img/faces/3-image.jpg",
+                "avatar_url": "https://reqres.in/img/faces/2-image.jpg",
               },
               {
                 "name": "David",
-                "avatar_url": "https://reqres.in/img/faces/3-image.jpg",
+                "avatar_url": "https://reqres.in/img/faces/5-image.jpg",
               },
             ]
           }
