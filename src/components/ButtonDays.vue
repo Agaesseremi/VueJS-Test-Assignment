@@ -22,37 +22,35 @@ export default {
 </script>
 <template>
   <div class="flex items-center mb-5">
-<button
-  v-for="n in 4"
-  :key="n"
-  class="flex-1 button-days bg-white border border-gray-300 rounded-full shadow-md"
-  :class="{ 'active': activeButton === n }"
-  @click="toggleStyle(n)"
->
-        <p class="text-number">
-          {{
-            moment()
-              .add(n - 1, 'days')
-              .format('DD')
-          }}
-        </p>
-        <p class="text-days">
-          {{
-            moment()
-              .add(n - 1, 'days')
-              .format('ddd')
-          }}
-        </p>
+    <button v-for="n in 4" :key="n" class="flex-1 button-days bg-white border border-gray-300 rounded-full shadow-md"
+      :class="{ 'active': activeButton === n }" @click="toggleStyle(n)">
+      <p class="text-number">
+        {{
+          moment()
+            .add(n - 1, 'days')
+            .format('DD')
+        }}
+      </p>
+      <p class="text-days">
+        {{
+          moment()
+            .add(n - 1, 'days')
+            .format('ddd')
+        }}
+      </p>
     </button>
   </div>
 </template>
 
 <style scoped>
-
-
 .active.button-days {
   background-color: blue;
   color: white;
+}
+
+.text-number {
+  font-size: 24px;
+  font-weight: bold;
 }
 
 .active .text-number {

@@ -35,10 +35,11 @@ export default {
 </script>
 
 <style scoped>
-/* *{
-  box-shadow: 0 0 0 3px red ;
+/* * {
+  box-shadow: 0 0 0 3px red;
 
 } */
+
 .app {
   background-color: #DBE9F6;
   color: #000;

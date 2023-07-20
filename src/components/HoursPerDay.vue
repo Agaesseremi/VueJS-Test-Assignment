@@ -7,6 +7,16 @@ export default {
   methods: {
     moment,
   },
+  computed: {
+    filteredTasks() {
+      return (hour) => {
+        return this.meets.tasks.filter((task) => {
+          return task['start-time'].slice(0, 2) == hour - 1;
+        });
+      };
+    },
+  },
+
 
   components: {
     TaskCard
@@ -66,18 +76,22 @@ export default {
 
 <template>
   <h1>OnGoing</h1>
-  <!-- Create hour for selected day -->
-  <div class="calendar flex ">
-    <div class="timeline w-20">
+  <!-- Hours of the day -->
+  <div class="calendar flex">
+    <div class="timeline w-1/5">
       <div class="time" v-for="hour in 24" :key="hour">
         <p>{{ moment({ hour: hour - 1 }).format('HH:mm') }}</p>
-        <div class="hour-line" v-if="hour > 1"></div>
+        <div v-if="hour > 1"></div>
       </div>
     </div>
-    <div class="days w-80">
+
+    <!--div for call TaskCard when in Json -->
+    <div class="days w-4/5 h-40">
       <div class="time" v-for="hour in 24" :key="hour">
-        <div v-if="hour - 1 == meets.tasks[1]['start-time'].slice(0, 2)">
-          <TaskCard :task="meets.tasks[1]" />
+        <div v-if="filteredTasks(hour).length > 0">
+          <div v-for="task in filteredTasks(hour)" :key="task.id">
+            <TaskCard :task="task" />
+          </div>
         </div>
       </div>
     </div>
@@ -89,10 +103,12 @@ export default {
 <style scoped>
 h1 {
   margin-left: 25px;
+  font-size: 24px;
   font-weight: bolder;
+  margin-bottom: 20px;
 }
 
 .time {
-  height: 50px;
+  height: 100px;
 }
 </style>

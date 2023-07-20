@@ -44,4 +44,8 @@ button {
   border: none;
   cursor: pointer;
 }
+
+h2 {
+  font-size: 24px;
+}
 </style>
