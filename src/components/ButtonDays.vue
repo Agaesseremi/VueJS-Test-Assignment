@@ -21,7 +21,7 @@ export default {
 };
 </script>
 <template>
-  <div class="flex mb-5">
+  <div class="flex items-center mb-5">
 <button
   v-for="n in 4"
   :key="n"
