@@ -1,75 +1,30 @@
 <script>
-import moment from 'moment'
+import moment from 'moment';
 import TaskCard from './TaskCard.vue';
 
 export default {
   name: 'HoursPerDay',
-  methods: {
-    moment,
-  },
-  computed: {
-    filteredTasks() {
-      return (hour) => {
-        return this.meets.tasks.filter((task) => {
-          return task['start-time'].slice(0, 2) == hour - 1;
-        });
-      };
-    },
-  },
 
+  props: ['data'],
 
   components: {
     TaskCard
   },
-  data() {
-    return {
-      meets: {
-        "id": 95,
-        "avatar_url": "https://reqres.in/img/faces/3-image.jpg",
-        "email": "emma.wong@reqres.in",
-        "first_name": "Jhon",
-        "last_name": "Mathew",
-        "primary_color": "#0804db",
-        "tasks": [
-          {
-            "id": 1,
-            "date": "20/07/2023",
-            "start-time": "09:00",
-            "end-time": "10:00",
-            "title": "Mobile app design",
-            "members": [
-              {
-                "name": "Mike",
-                "avatar_url": "https://reqres.in/img/faces/1-image.jpg",
-              },
-              {
-                "name": "Anita",
-                "avatar_url": "https://reqres.in/img/faces/2-image.jpg",
-              },
-            ]
-          },
-          {
-            "id": 2,
-            "date": "20/07/2023",
-            "start-time": "10:00",
-            "end-time": "11:20",
-            "title": "Software Testing",
-            "members": [
-              {
-                "name": "Anita",
-                "avatar_url": "https://reqres.in/img/faces/2-image.jpg",
-              },
-              {
-                "name": "David",
-                "avatar_url": "https://reqres.in/img/faces/5-image.jpg",
-              },
-            ]
-          }
-        ]
-      }
-    }
-  }
-}
+
+  methods: {
+    moment,
+    filteredTasks(hour) {
+      return this.$props.data.tasks?.filter((task) => {
+        return task['start-time'].slice(0, 2) == hour - 1;
+      }) || [];
+    },
+  },
+
+  setup(props) {
+    console.log(props);
+  },
+
+};
 </script>
 
 <!-- TaskCard -->
@@ -86,9 +41,9 @@ export default {
     </div>
 
     <!--div for call TaskCard when in Json -->
-    <div class="days w-4/5 h-40">
-      <div class="time" v-for="hour in 24" :key="hour">
-        <div v-if="filteredTasks(hour).length > 0">
+    <div class="days w-4/5 h-40" v-if="this.$props.data">
+      <div class="time" v-for="hour in  24" :key="hour">
+        <div v-if="filteredTasks(hour) && filteredTasks(hour).length > 0">
           <div v-for="task in filteredTasks(hour)" :key="task.id">
             <TaskCard :task="task" />
           </div>

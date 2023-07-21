@@ -11,9 +11,12 @@
         <ProfilePicture />
       </div>
     </header>
+    <div>
+      <h1></h1>
+    </div>
     <ButtonMonth />
     <ButtonDays />
-    <HoursPerDay />
+    <HoursPerDay :data="this.data" />
   </div>
 </template>
 
@@ -30,7 +33,23 @@ export default {
     ButtonDays,
     ButtonMonth,
 
-  }
+  },
+  data() {
+    return {
+      data: {},
+      tasks: []
+    };
+  },
+
+  created() {
+
+    fetch("https://my-json-server.typicode.com/Agaesseremi/VueJS-Test-Assignment-Json/data")
+      .then(response => response.json())
+      .then(data => {
+        this.data = data;
+        this.tasks = data.tasks
+      });
+  },
 }
 </script>
 
