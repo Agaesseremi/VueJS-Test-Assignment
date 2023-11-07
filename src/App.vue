@@ -14,6 +14,7 @@
     <div>
       <h1></h1>
     </div>
+    <DatePicker />
     <ButtonMonth />
     <ButtonDays />
     <HoursPerDay :data="this.data" />
@@ -25,6 +26,7 @@ import ProfilePicture from './components/ProfilePicture.vue';
 import HoursPerDay from './components/HoursPerDay.vue';
 import ButtonDays from './components/ButtonDays.vue';
 import ButtonMonth from './components/ButtonMonth.vue';
+import DatePicker from './components/DatePicker.vue';
 export default {
   name: 'App',
   components: {
@@ -32,7 +34,7 @@ export default {
     HoursPerDay,
     ButtonDays,
     ButtonMonth,
-
+    DatePicker,
   },
   data() {
     return {
