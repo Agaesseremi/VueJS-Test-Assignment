@@ -1,10 +1,10 @@
 <template>
-    <div class="min-h-screen flex items-center justify-center">
-        <div class="bg-white p-8 rounded shadow-md w-full max-w-md">
-            <div>
+    <div class="datepicker min-h-screen flex items-center justify-center">
+        <div class="bg-white p-8 rounded shadow-md w-screen">
+            <div class="w-full lg:w-1/3 mx-auto">
                 <label for="month" class="block font-bold">Mois :</label>
                 <select id="month" v-model="selectedMonth" class="w-full p-2 rounded border">
-                    <option value="Jan">January</option>
+                    <option value="Jan">Janvier</option>
                     <option v-for="(month, key) in months" :key="key" :value="key">{{ month.name }}</option>
                 </select>
                 <button @click="selectMonth" class="w-full mt-4 bg-blue-500 text-white p-2 rounded hover:bg-blue-700">
@@ -12,7 +12,7 @@
                 </button>
             </div>
 
-            <div v-if="isMonthSelected">
+            <div class="w-full lg:w-1/3 mx-auto" v-if="isMonthSelected">
                 <label for="day" class="block mt-4 font-bold">Jour :</label>
                 <select id="day" v-model="selectedDay">
                     <option value="">Sélectionnez un jour</option>
@@ -23,9 +23,8 @@
                 </button>
             </div>
 
-            <div v-if="isMonthSelected && isDaySelected" class="mt-4">
-                <p class="font-bold">Mois sélectionné : {{ selectedMonthData.name }}</p>
-                <p class="mt-2">Jour sélectionné : {{ selectedDay }}</p>
+            <div v-if="isMonthSelected && isDaySelected" class="w-full lg:w-1/3 mx-auto mt-4">
+                <p class="font-bold">Date sélectionné : {{ selectedDay }} {{ selectedMonthData.name }} 2023</p>
             </div>
         </div>
     </div>
@@ -41,73 +40,73 @@ export default {
             isDaySelected: false,
             months: {
                 "Jan": {
-                    "name": "January",
+                    "name": "Janvier",
                     "short": "Jan",
                     "number": 1,
                     "days": 31
                 },
                 "Feb": {
-                    "name": "February",
+                    "name": "Février",
                     "short": "Feb",
                     "number": 2,
                     "days": 28
                 },
                 "Mar": {
-                    "name": "March",
+                    "name": "Mars",
                     "short": "Mar",
                     "number": 3,
                     "days": 31
                 },
                 "Apr": {
-                    "name": "April",
+                    "name": "Avril",
                     "short": "Apr",
                     "number": 4,
                     "days": 30
                 },
                 "May": {
-                    "name": "May",
+                    "name": "Mai",
                     "short": "May",
                     "number": 5,
                     "days": 31
                 },
                 "Jun": {
-                    "name": "June",
+                    "name": "Juin",
                     "short": "Jun",
                     "number": 6,
                     "days": 30
                 },
                 "Jul": {
-                    "name": "July",
+                    "name": "Juillet",
                     "short": "Jul",
                     "number": 7,
                     "days": 31
                 },
                 "Aug": {
-                    "name": "August",
+                    "name": "Aout",
                     "short": "Aug",
                     "number": 8,
                     "days": 31
                 },
                 "Sep": {
-                    "name": "September",
+                    "name": "Septembre",
                     "short": "Sep",
                     "number": 9,
                     "days": 30
                 },
                 "Oct": {
-                    "name": "October",
+                    "name": "Octobre",
                     "short": "Oct",
                     "number": 10,
                     "days": 31
                 },
                 "Nov": {
-                    "name": "November",
+                    "name": "Novembre",
                     "short": "Nov",
                     "number": 11,
                     "days": 30
                 },
                 "Dec": {
-                    "name": "December",
+                    "name": "Decembre",
                     "short": "Dec",
                     "number": 12,
                     "days": 31
@@ -131,3 +130,5 @@ export default {
     },
 };
 </script>
+
+<style></style>
