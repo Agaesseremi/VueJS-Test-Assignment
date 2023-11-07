@@ -1,5 +1,5 @@
 <template>
-    <div class="datepicker min-h-screen flex items-center justify-center">
+    <div class="datepicker flex items-center justify-center">
         <div class="bg-white p-8 rounded shadow-md w-screen">
             <div class="w-full lg:w-1/3 mx-auto">
                 <label for="month" class="block font-bold">Mois :</label>

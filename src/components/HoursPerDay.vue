@@ -97,4 +97,34 @@ h1 {
   padding-top: 0.5rem;
   padding-left: 0.5rem;
 }
+
+.calendar {
+  overflow-x: auto;
+  /* Rend la div scrollable horizontalement */
+  white-space: nowrap;
+  /* Empêche le texte de revenir à la ligne */
+  max-height: 22.9rem;
+  scrollbar-width: none;
+  /* Supprime complètement la barre de défilement (Firefox) */
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(194, 200, 252);
+  border-radius: 5px;
+}
+
+/*For Microsoft browsers */
+::-ms-scrollbar {
+  width: none;
+}
+
+::-ms-scrollbar-thumb {
+  background-color: #DBE9F6;
+  border-radius: none;
+}
 </style>

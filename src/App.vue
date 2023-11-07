@@ -15,8 +15,6 @@
       <h1></h1>
     </div>
     <DatePicker />
-    <ButtonMonth />
-    <ButtonDays />
     <HoursPerDay :data="this.data" />
   </div>
 </template>
@@ -24,16 +22,12 @@
 <script>
 import ProfilePicture from './components/ProfilePicture.vue';
 import HoursPerDay from './components/HoursPerDay.vue';
-import ButtonDays from './components/ButtonDays.vue';
-import ButtonMonth from './components/ButtonMonth.vue';
 import DatePicker from './components/DatePicker.vue';
 export default {
   name: 'App',
   components: {
     ProfilePicture,
     HoursPerDay,
-    ButtonDays,
-    ButtonMonth,
     DatePicker,
   },
   data() {
@@ -65,5 +59,6 @@ export default {
   background-color: #DBE9F6;
   color: #000;
   font-family: 'Roboto', sans-serif;
+  height: 100vh;
 }
 </style>
