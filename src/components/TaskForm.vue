@@ -1,40 +1,43 @@
 <template>
     <div class="modal" v-if="showModal">
-        <div class="modal-content">
+        <div class="modal-content bg-white rounded shadow-md p-4 max-w-md w-full">
             <form @submit="submitForm">
-                <h1 class="title is-4">Create Appointment</h1>
-                <div class="field">
-                    <label for="title" class="label">Title</label>
-                    <div class="control">
-                        <input class="input" type="text">
+                <h1 class="text-lg font-bold text-center mb-4">Create Appointment</h1>
+                <div class="mb-4">
+                    <label for="title" class="block font-bold">Title</label>
+                    <div class="border p-2">
+                        <input class="input w-full" type="text" id="title" name="title">
                     </div>
                 </div>
-                <div class="field">
-                    <label for="dateofappointment" class="label">Date Of Appointment</label>
-                    <div class="control">
-                        <input class="input" type="date" name="dateofappointment" id="dateofappointment">
+                <div class="mb-4">
+                    <label for="dateofappointment" class="block font-bold">Date Of Appointment</label>
+                    <div class="border p-2">
+                        <input class="input w-full" type="date" name="dateofappointment" id="dateofappointment">
                     </div>
                 </div>
-                <div class="field">
-                    <label for="starttime" class="label">Start Time</label>
-                    <div class="control">
-                        <input class="input" type="time" id="starttime" name="starttime" min="00:00" max="23:00" required>
+                <div class="mb-4">
+                    <label for="starttime" class="block font-bold">Start Time</label>
+                    <div class="border p-2">
+                        <input class="input w-full" type="time" id="starttime" name="starttime" min="00:00" max="23:00"
+                            required>
                     </div>
                 </div>
-                <div class="field">
-                    <label for="endtime" class="label">End Time</label>
-                    <div class="control">
-                        <input class="input" type="time" id="endtime" name="endtime" min="00:00" max="23:00" required>
+                <div class="mb-4">
+                    <label for="endtime" class="block font-bold">End Time</label>
+                    <div class="border p-2">
+                        <input class="input w-full" type="time" id="endtime" name="endtime" min="00:00" max="23:00"
+                            required>
                     </div>
                 </div>
-                <div class="btnform">
-                    <button type="submit">Submit</button>
+                <div class="btnform flex justify-between mt-4">
+                    <button type="submit" class="bg-blue-500 text-white rounded p-2 hover:bg-blue-700">Submit</button>
                     <button @click="closeModal" class="button is-link">Cancel</button>
                 </div>
             </form>
         </div>
     </div>
 </template>
+
 
 <script>
 export default {
@@ -62,42 +65,6 @@ export default {
     width: 100%;
     height: 100%;
     z-index: 999;
-}
-
-.modal-content {
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-    padding: 20px;
-    max-width: 400px;
-    width: 100%;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.field {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
-    text-align: left;
-}
-
-.input {
-    border: 1px solid black;
-    padding: 5px;
-}
-
-.label {
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.btnform {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 1rem;
 }
 
 /* Customize additional styles as needed */

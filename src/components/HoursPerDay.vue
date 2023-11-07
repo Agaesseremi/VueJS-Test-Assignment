@@ -103,9 +103,15 @@ h1 {
   /* Rend la div scrollable horizontalement */
   white-space: nowrap;
   /* Empêche le texte de revenir à la ligne */
-  max-height: 22.9rem;
+  max-height: 31rem;
   scrollbar-width: none;
   /* Supprime complètement la barre de défilement (Firefox) */
+}
+
+@media screen and (max-width: 400px) {
+  .calendar {
+    max-height: 22.9rem;
+  }
 }
 
 ::-webkit-scrollbar {

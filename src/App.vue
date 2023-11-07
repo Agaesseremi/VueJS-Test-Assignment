@@ -61,4 +61,10 @@ export default {
   font-family: 'Roboto', sans-serif;
   height: 100vh;
 }
+
+@media screen and (max-width: 400px) {
+  .app {
+    height: 135vh;
+  }
+}
 </style>

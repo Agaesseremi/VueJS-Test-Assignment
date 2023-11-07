@@ -1,30 +1,26 @@
 <template>
     <div class="datepicker flex items-center justify-center">
-        <div class="bg-white p-8 rounded shadow-md w-screen">
-            <div class="w-full lg:w-1/3 mx-auto">
+        <div class="bg-white lg:flex p-8 rounded shadow-md w-screen">
+            <div class="w-1/2 lg:w-1/4 mx-auto mb-3">
                 <label for="month" class="block font-bold">Mois :</label>
                 <select id="month" v-model="selectedMonth" class="w-full p-2 rounded border">
                     <option value="Jan">Janvier</option>
                     <option v-for="(month, key) in months" :key="key" :value="key">{{ month.name }}</option>
                 </select>
                 <button @click="selectMonth" class="w-full mt-4 bg-blue-500 text-white p-2 rounded hover:bg-blue-700">
-                    Sélectionner le mois
+                    Sélection du mois
                 </button>
             </div>
 
-            <div class="w-full lg:w-1/3 mx-auto" v-if="isMonthSelected">
-                <label for="day" class="block mt-4 font-bold">Jour :</label>
-                <select id="day" v-model="selectedDay">
-                    <option value="">Sélectionnez un jour</option>
+            <div class="w-1/2 lg:w-1/4 mx-auto" v-if="isMonthSelected">
+                <label for="day" class="block font-bold">Jour :</label>
+                <select id="day" v-model="selectedDay" class="w-full p-2 rounded border">
+                    <option value="">Sélection du jour</option>
                     <option v-for="(day, index) in selectedMonthData.days" :key="index" :value="day">{{ day }}</option>
                 </select>
                 <button @click="selectDay" class="w-full mt-4 bg-blue-500 text-white p-2 rounded hover:bg-blue-700">
-                    Sélectionner le jour
+                    Sélection du jour
                 </button>
-            </div>
-
-            <div v-if="isMonthSelected && isDaySelected" class="w-full lg:w-1/3 mx-auto mt-4">
-                <p class="font-bold">Date sélectionné : {{ selectedDay }} {{ selectedMonthData.name }} 2023</p>
             </div>
         </div>
     </div>
