@@ -28,11 +28,10 @@
 <script>
 import moment from 'moment';
 import TaskCard from './TaskCard.vue';
-import TaskForm from '../components/TaskForm.vue';
+import TaskForm from './Modal/TaskForm.vue';
 
 export default {
   name: 'HoursPerDay',
-
   props: ['data'],
 
   components: {
