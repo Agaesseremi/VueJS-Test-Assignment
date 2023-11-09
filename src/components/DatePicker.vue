@@ -27,6 +27,8 @@
 </template>
 
 <script>
+import { useStore } from '../Store';
+
 export default {
     data() {
         return {
@@ -111,17 +113,31 @@ export default {
             selectedMonthData: null,
         };
     },
+    watch: {
+        selectedMonth: 'fetchSelectedMonthData',
+    },
     methods: {
-        selectMonth() {
+        async selectMonth() {
             if (this.selectedMonth !== '') {
                 this.isMonthSelected = true;
-                this.selectedMonthData = this.months[this.selectedMonth];
+                useStore().setMonth(this.selectedMonth);
+                await this.fetchSelectedMonthData();
+                console.log('Selected Month:', this.selectedMonth);
             }
         },
         selectDay() {
             if (this.selectedDay !== '') {
                 this.isDaySelected = true;
+                useStore().setDay(this.selectedDay);
+                console.log('Selected Day:', this.selectedDay);
             }
+        },
+        async fetchSelectedMonthData() {
+            // Simulating asynchronous data fetching
+            // Replace the following logic with your actual data fetching code
+            this.selectedMonthData = {
+                days: Array.from({ length: this.months[this.selectedMonth].days }, (_, i) => i + 1),
+            };
         },
     },
 };

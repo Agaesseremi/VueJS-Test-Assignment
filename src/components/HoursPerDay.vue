@@ -29,6 +29,7 @@
 import moment from 'moment';
 import TaskCard from './TaskCard.vue';
 import TaskForm from './Modal/TaskForm.vue';
+import { useStore } from '../Store';
 
 export default {
   name: 'HoursPerDay',
@@ -41,9 +42,27 @@ export default {
 
   data() {
     return {
-      showModal: false
+      showModal: false,
+      selectedMonthData: null,
+      selectedDayData: null,
+      selectedDateData: null,
     }
   },
+
+  watch: {
+    selectedMonth(newValue, oldValue) {
+      console.log('Selected Month changed:', newValue, 'from', oldValue);
+      // Update selectedDays and selectedDate here if needed
+      this.selectedMonth();
+      this.selectedDate();
+    },
+    selectedDay(newValue, oldValue) {
+      console.log('Selected Day changed:', newValue, 'from', oldValue);
+      this.selectedDay();
+      this.selectedDate();
+    },
+  },
+
 
   methods: {
     moment,
@@ -53,11 +72,32 @@ export default {
       }) || [];
     },
     openModal() {
+      console.log(this.$props);
       this.showModal = true; // Show the modal when this method is called
     },
     closeAndHideModal() {
       this.showModal = false; // Hide the modal when this method is called
-    }
+    },
+    selectedMonth() {
+      const month = useStore().selectedMonth;
+      console.log('Selected Month:', month);
+      return month;
+    },
+    selectedDay() {
+      const day = useStore().selectedDay;
+      console.log('Selected Day:', day);
+      return day;
+    },
+    selectedDate() {
+      // Combine selectedMonth and selectedDay to create the selectedDate
+      if (this.selectedMonth && this.selectedDay) {
+        const year = 2023; // Replace with your desired year
+        const selectedDate = moment(`${year}-${this.selectedMonth}-${this.selectedDay}`, 'YYYY-MM-DD').format('YYYY-MM-DD');
+        console.log(selectedDate);
+        return moment(`${year}-${this.selectedMonth}-${this.selectedDay}`, 'YYYY-MM-DD').format('YYYY-MM-DD');
+      }
+      return null;
+    },
   },
 
   setup(props) {
