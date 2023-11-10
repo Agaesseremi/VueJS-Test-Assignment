@@ -6,6 +6,7 @@ export const useStore = defineStore('app', {
     state: () => ({
         selectedMonth: null,
         selectedDay: null,
+        user: null,
     }),
     actions: {
         setMonth(month) {
@@ -14,5 +15,8 @@ export const useStore = defineStore('app', {
         setDay(day) {
             this.selectedDay = day;
         },
+        setUser(data) {
+            this.user = data;
+        }
     },
 });

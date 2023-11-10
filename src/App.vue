@@ -10,6 +10,7 @@
 import HoursPerDay from './components/HoursPerDay.vue';
 import DatePicker from './components/DatePicker.vue';
 import Navbar from './components/Navbar.vue';
+import { useStore } from './Store';
 import axios from 'axios';
 
 export default {
@@ -41,7 +42,8 @@ export default {
         axios.get('http://127.0.0.1:8000/api/tasks', { headers })
           .then(response => {
             // Les données sont déjà au format JSON ici, pas besoin de response.json()
-            this.data = response.data;
+            this.data = response.data.data[0];
+            useStore().setUser(response.data.data[0])
             this.tasks = response.data.task;
             console.log(this.data);
             console.log(this.tasks);
