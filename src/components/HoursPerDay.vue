@@ -16,14 +16,13 @@
     <!--div for call TaskCard when in Json -->
     <div v-if="this.store.user && this.store.user.task && this.store.user.task.length > 0" class="days w-4/5 h-40">
       <div class="time" v-for="hour in 24" :key="hour">
-        <div v-if="filteredTasks(selectedDateData).length > 0">
-          <div v-for="task in filteredTasks(selectedDateData)" :key="task.id">
+        <div v-if="filteredTaskList.length > 0">
+          <div v-for="task in filteredTaskList" :key="task.id">
             <TaskCard :task="task" />
           </div>
         </div>
       </div>
     </div>
-
     <div v-else>
       <!-- Affichez un message ou un chargement ici en cas de données vides -->
       <div class="time" v-for="hour in 24" :key="hour">
@@ -36,6 +35,7 @@
 import moment from 'moment';
 import TaskCard from './TaskCard.vue';
 import TaskForm from './Modal/TaskForm.vue';
+import { computed, watchEffect, ref } from 'vue';
 import { useStore } from '../Store';
 
 export default {
@@ -49,58 +49,14 @@ export default {
 
   setup() {
     const store = useStore();
+    const selectedDay = computed(() => store.selectedDay);
+    const selectedMonth = computed(() => store.selectedMonth);
 
-    return {
-      store
-    };
-  },
+    // Utilisez 'ref' pour selectedDateData
+    const selectedDateData = ref(null);
 
-  data() {
-    return {
-      showModal: false,
-      selectedDateData: null,
-    }
-  },
-  watch: {
-    '$store.state.selectedDate': function () {
-      this.selectedDate();
-    },
-  },
-
-  methods: {
-    moment,
-    filteredTasks() {
-      const filteredTaskList = [];
-      if (this.store.user.task && this.store.user.task.length > 0) {
-        console.log('user.task:', this.store.user.task); // Afficher le contenu de user.task
-        this.store.user.task.forEach(task => {
-          console.log('task.date:', task.date); // Afficher la valeur de task.date
-          console.log('selectedDateData:', this.selectedDateData); // Afficher la valeur de selectedDateData
-          if (task.date === this.selectedDateData) {
-            filteredTaskList.push(task);
-          }
-        });
-      }
-      console.log('filteredTaskList:', filteredTaskList); // Afficher le contenu de filteredTaskList
-      return filteredTaskList;
-    },
-
-
-
-    openModal() {
-      console.log(this.store.selectedDay)
-      console.log(this.store.selectedMonth);
-      console.log(this.store.user.task);
-      this.selectedDate();
-      this.filteredTasks();
-      this.showModal = true; // Show the modal when this method is called
-    },
-    closeAndHideModal() {
-      this.showModal = false; // Hide the modal when this method is called
-    },
-    selectedDate() {
+    const selectedDate = () => {
       console.log('ppDate');
-      const store = useStore();
       const monthAbbreviations = {
         "Jan": "01",
         "Feb": "02",
@@ -116,19 +72,61 @@ export default {
         "Dec": "12",
       };
 
-      this.selectedMonth = monthAbbreviations[store.selectedMonth] || "01"; // Utilise la correspondance ou "01" par défaut
-      this.selectedDay = store.selectedDay.toString().padStart(2, '0'); // Formate le jour avec 2 chiffres
+      const selectedMonthValue = monthAbbreviations[selectedMonth.value] || "01";
+      const selectedDayValue = selectedDay.value.toString().padStart(2, '0');
 
       const year = 2023;
-      const selectedDateData = `${year}-${this.selectedMonth}-${this.selectedDay}`;
-      console.log(selectedDateData);
-      return selectedDateData;
-    }
+      const actualDate = `${year}-${selectedMonthValue}-${selectedDayValue}`;
+      console.log(actualDate);
+      selectedDateData.value = actualDate;
+    };
+    const filteredTaskList = ref([]);
 
+    const filteredTasks = () => {
+      if (store.user.task && store.user.task.length > 0) {
+        console.log('user.task:', store.user.task);
+        store.user.task.forEach(task => {
+          console.log('task.date:', task.date);
+          console.log('selectedDateData:', selectedDateData.value);
+          if (task.date === selectedDateData.value) {
+            filteredTaskList.value.push(task);
+          }
+        });
+      }
+      console.log('filteredTaskList:', filteredTaskList);
+      return filteredTaskList;
+    };
 
+    watchEffect(() => {
+      if (selectedDay.value !== null && selectedMonth.value !== null) {
+        selectedDate();
+        filteredTasks();
+      }
+    });
 
+    return {
+      store,
+      selectedDay,
+      selectedMonth,
+      selectedDateData,
+      filteredTaskList,
+    };
   },
 
+
+  methods: {
+    moment,
+
+
+
+    openModal() {
+      this.filteredTasks();
+      this.showModal = true; // Show the modal when this method is called
+    },
+    closeAndHideModal() {
+      this.showModal = false; // Hide the modal when this method is called
+    },
+  },
 };
 </script>
 
