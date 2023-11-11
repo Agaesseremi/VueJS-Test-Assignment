@@ -16,8 +16,8 @@
     <!--div for call TaskCard when in Json -->
     <div v-if="this.store.user && this.store.user.task && this.store.user.task.length > 0" class="days w-4/5 h-40">
       <div class="time" v-for="hour in 24" :key="hour">
-        <div v-if="filteredTaskList.length > 0">
-          <div v-for="task in filteredTaskList" :key="task.id">
+        <div v-if="filteredTasks(hour).length > 0">
+          <div v-for="task in filteredTasks(hour)" :key="task.id">
             <TaskCard :task="task" />
           </div>
         </div>
@@ -52,8 +52,24 @@ export default {
     const selectedDay = computed(() => store.selectedDay);
     const selectedMonth = computed(() => store.selectedMonth);
 
-    // Utilisez 'ref' pour selectedDateData
+    // Utilize 'ref' for selectedDateData
     const selectedDateData = ref(null);
+
+    const filteredTasks = (hour) => {
+      const selectedDateDataValue = selectedDateData.value;
+      if (store.user.task && store.user.task.length > 0) {
+        return store.user.task.filter((task) => {
+          const taskHour = parseInt(task.start_time.slice(11, 13), 10); // Extract the hour from the task start time
+          return task.date === selectedDateDataValue && taskHour === hour - 1;
+        });
+      } else {
+        // Handle the case where there are no tasks or the user is not connected
+        return [];
+      }
+    };
+
+
+    const filteredTaskList = ref([]);
 
     const selectedDate = () => {
       console.log('ppDate');
@@ -80,27 +96,11 @@ export default {
       console.log(actualDate);
       selectedDateData.value = actualDate;
     };
-    const filteredTaskList = ref([]);
-
-    const filteredTasks = () => {
-      if (store.user.task && store.user.task.length > 0) {
-        console.log('user.task:', store.user.task);
-        store.user.task.forEach(task => {
-          console.log('task.date:', task.date);
-          console.log('selectedDateData:', selectedDateData.value);
-          if (task.date === selectedDateData.value) {
-            filteredTaskList.value.push(task);
-          }
-        });
-      }
-      console.log('filteredTaskList:', filteredTaskList);
-      return filteredTaskList;
-    };
 
     watchEffect(() => {
       if (selectedDay.value !== null && selectedMonth.value !== null) {
         selectedDate();
-        filteredTasks();
+        filteredTaskList.value = filteredTasks(1); // Example hour, you can replace with the actual hour value
       }
     });
 
@@ -110,25 +110,25 @@ export default {
       selectedMonth,
       selectedDateData,
       filteredTaskList,
+      filteredTasks, // Make filteredTasks accessible from the template
     };
   },
-
 
   methods: {
     moment,
 
-
-
     openModal() {
-      this.filteredTasks();
       this.showModal = true; // Show the modal when this method is called
     },
+
     closeAndHideModal() {
       this.showModal = false; // Hide the modal when this method is called
     },
   },
 };
 </script>
+
+
 
 <style scoped>
 h1 {
