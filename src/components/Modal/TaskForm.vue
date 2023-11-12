@@ -41,6 +41,8 @@
 
 <script>
 import axios from 'axios';
+import { useStore } from '../../Store';
+
 
 export default {
     name: 'ModalFormTest',
@@ -52,7 +54,7 @@ export default {
                 date: '',
                 start_time: '',
                 end_time: ''
-            }
+            },
         };
     },
     methods: {
@@ -93,7 +95,8 @@ export default {
                 .then(response => {
                     // Gère la réponse de la requête API en cas de succès
                     console.log('Réponse de la création de tâche :', response.data);
-                    // Tu peux ajouter d'autres actions si nécessaire
+                    useStore().getTasksByUser();
+                    this.$emit('api-success');
                 })
                 .catch(error => {
                     // Gère les erreurs de la requête API

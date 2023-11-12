@@ -1,24 +1,34 @@
 <template>
     <header class="header flex items-center mb-5">
         <div class="w-1/3 text-center rounded-sm">
-
+            <!-- Contenu de la première section de l'en-tête -->
         </div>
         <div class="w-1/3 flex justify-center">
             <img src="../assets/logo_highday_transp.png" class="w-16 rounded-full border-black border-2 cursor-pointer" />
         </div>
         <div class="w-1/3">
-            <ProfilePicture />
-            <RegisterForm @register="handleRegister"></RegisterForm>
-            <LoginForm @login="handleLogin"></LoginForm>
+            <div v-if="isConnected()" :user="user">
+                <ProfilePicture />
+            </div>
+            <div v-else>
+                <button @click="openLoginModal"
+                    class="bg-blue-500 text-white rounded p-2 mx-2 hover:bg-blue-700">Connexion</button>
+                <button @click="openRegisterModal"
+                    class="bg-green-500 text-white rounded p-2 mx-2 hover:bg-green-700">Inscription</button>
+            </div>
         </div>
+        <LoginForm v-if="showModalLogin" :showModalLogin="showModalLogin" @close-modal-login="closeLoginModal" />
+        <RegisterForm v-if="showModalRegister" :showModalRegister="showModalRegister"
+            @close-modal-register="closeRegisterModal" />
     </header>
 </template>
 
 <script>
-import RegisterForm from './Modal/RegisterForm.vue';
-import LoginForm from './Modal/LoginForm.vue';
 import ProfilePicture from './ProfilePicture.vue';
-import axios from 'axios';
+import LoginForm from './Modal/LoginForm.vue';
+import RegisterForm from './Modal/RegisterForm.vue';
+import { useStore } from '../Store';
+import { computed } from 'vue';
 
 
 export default {
@@ -26,51 +36,39 @@ export default {
     data() {
         return {
             data: {},
-            tasks: []
+            tasks: [],
+            showModalLogin: false,
+            showModalRegister: false
+        };
+    },
+    setup() {
+        const store = useStore();
+        const isConnected = computed(() => store.getIsConnected);
+        const user = store.getTasksByUser;
+        console.log(user);
+
+        return {
+            isConnected,
+            user
         };
     },
     components: {
-        RegisterForm,
-        LoginForm,
         ProfilePicture,
+        LoginForm,
+        RegisterForm
     },
     methods: {
-        handleRegister(userData) {
-            // Appelle une méthode pour effectuer la requête API pour l'inscription
-            axios.post('http://127.0.0.1:8000/api/users', userData)
-                .then(response => {
-                    // Gère la réponse de la requête API en cas de succès
-                    console.log('Réponse de l\'inscription :', response.data);
-                })
-                .catch(error => {
-                    // Gère les erreurs de la requête API
-                    console.error('Erreur de l\'inscription :', error);
-                });
+        openLoginModal() {
+            this.showModalLogin = true; // Ouvrir la modal de Connexion
         },
-        handleLogin(credentials) {
-            // Appelle une méthode pour effectuer la requête API pour la connexion
-            axios.post('http://127.0.0.1:8000/api/auth/login', credentials)
-                .then(response => {
-                    // Gère la réponse de la requête API en cas de succès
-                    const token = response.data.token;
-
-                    // Stocke le token dans le local storage
-                    localStorage.setItem('token', token);
-
-                    console.log(localStorage);
-
-                    // Appelle la méthode pour effectuer d'autres actions après la connexion
-                    this.afterLogin();
-                    this.$emit('login-success');
-                })
-                .catch(error => {
-                    // Gère les erreurs de la requête API
-                    console.error('Erreur de la connexion :', error);
-                });
+        closeLoginModal() {
+            this.showModalLogin = false; // Fermer la modal de Connexion
         },
-        afterLogin() {
-            // Tu peux ajouter d'autres actions à effectuer après une connexion réussie ici
-            console.log('Utilisateur connecté !');
+        openRegisterModal() {
+            this.showModalRegister = true; // Ouvrir la modal d'Inscription
+        },
+        closeRegisterModal() {
+            this.showModalRegister = false; // Fermer la modal d'Inscription
         },
         handleLogout() {
             // Supprime le token du local storage
@@ -80,8 +78,6 @@ export default {
             console.log('Utilisateur déconnecté !');
         },
     },
-
-
 }
 </script>
 

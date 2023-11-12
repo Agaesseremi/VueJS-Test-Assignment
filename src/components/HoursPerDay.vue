@@ -3,7 +3,7 @@
     <h1>OnGoing</h1>
     <button @click="openModal"><i class="fa-solid fa-plus fa-xl"></i></button>
   </div>
-  <TaskForm :showModal="showModal" @close-modal="closeAndHideModal" />
+  <TaskForm :showModal="showModal" @close-modal="closeAndHideModal" @api-success="closeAndHideModal" />
   <!-- Hours of the day -->
   <div class="calendar flex">
     <div class="timeline w-1/5">
@@ -45,6 +45,11 @@ export default {
   components: {
     TaskCard,
     TaskForm
+  },
+  data() {
+    return {
+      showModal: false
+    }
   },
 
   setup() {
