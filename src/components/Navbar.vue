@@ -3,18 +3,18 @@
         <div class="w-1/3 text-center rounded-sm">
             <!-- Contenu de la première section de l'en-tête -->
         </div>
-        <div class="w-1/3 flex justify-center">
+        <div class="w-1/3 mt-4 flex justify-center">
             <img src="../assets/logo_highday_transp.png" class="w-16 rounded-full border-black border-2 cursor-pointer" />
         </div>
         <div class="w-1/3">
-            <div v-if="isConnected()" :user="user">
+            <div v-if="isConnected()">
                 <ProfilePicture />
             </div>
-            <div v-else>
+            <div class="mt-2" v-else>
                 <button @click="openLoginModal"
                     class="bg-blue-500 text-white rounded p-2 mx-2 hover:bg-blue-700">Connexion</button>
                 <button @click="openRegisterModal"
-                    class="bg-green-500 text-white rounded p-2 mx-2 hover:bg-green-700">Inscription</button>
+                    class="bg-green-500 text-white rounded mt-2 p-2 mx-2 hover:bg-green-700">Inscription</button>
             </div>
         </div>
         <LoginForm v-if="showModalLogin" :showModalLogin="showModalLogin" @close-modal-login="closeLoginModal" />
@@ -46,7 +46,6 @@ export default {
         const isConnected = computed(() => store.getIsConnected);
         const user = store.getTasksByUser;
         console.log(user);
-
         return {
             isConnected,
             user

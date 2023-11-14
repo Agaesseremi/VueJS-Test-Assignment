@@ -26,6 +26,9 @@ export const useStore = defineStore('app', {
         getIsConnected() {
             return this.isConnected;
         },
+        getUserData() {
+            return this.user;
+        },
         async getTasksByUser() {
             const token = localStorage.getItem('token');
 

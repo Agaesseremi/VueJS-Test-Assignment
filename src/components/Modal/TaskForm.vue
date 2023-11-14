@@ -2,36 +2,36 @@
     <div class="modal" v-if="showModal">
         <div class="modal-content bg-white rounded shadow-md p-4 max-w-md w-full">
             <form @submit.prevent="submitForm">
-                <h1 class="text-lg font-bold text-center mb-4">Create Appointment</h1>
+                <h1 class="text-lg font-bold text-center mb-4">Prendre Rendez-Vous</h1>
                 <div class="mb-4">
-                    <label for="title" class="block font-bold">Title</label>
+                    <label for="title" class="block font-bold">Titre</label>
                     <div class="border p-2">
                         <input v-model="formData.title" class="input w-full" type="text">
                     </div>
                 </div>
                 <div class="mb-4">
-                    <label for="dateofappointment" class="block font-bold">Date Of Appointment</label>
+                    <label for="dateofappointment" class="block font-bold">Date</label>
                     <div class="border p-2">
                         <input v-model="formData.date" class="input w-full" type="date">
                     </div>
                 </div>
                 <div class="mb-4">
-                    <label for="starttime" class="block font-bold">Start Time</label>
+                    <label for="starttime" class="block font-bold">Heure de début</label>
                     <div class="border p-2">
                         <input v-model="formData.start_time" class="input w-full" type="time" min="00:00" max="23:00"
                             required>
                     </div>
                 </div>
                 <div class="mb-4">
-                    <label for="endtime" class="block font-bold">End Time</label>
+                    <label for="endtime" class="block font-bold">Heure de fin</label>
                     <div class="border p-2">
                         <input v-model="formData.end_time" class="input w-full" type="time" min="00:00" max="23:00"
                             required>
                     </div>
                 </div>
                 <div class="btnform flex justify-between mt-4">
-                    <button type="submit" class="bg-blue-500 text-white rounded p-2 hover:bg-blue-700">Submit</button>
-                    <button @click="closeModal" class="button is-link">Cancel</button>
+                    <button type="submit" class="bg-blue-500 text-white rounded p-2 hover:bg-blue-700">Créer</button>
+                    <button @click="closeModal" class="button is-link">Annuler</button>
                 </div>
             </form>
         </div>

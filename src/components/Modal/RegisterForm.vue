@@ -43,7 +43,6 @@ export default {
             this.$emit('close-modal-register');
         },
         handleRegister() {
-            // Crée un objet avec les données du formulaire au format souhaité
             const userData = {
                 first_name: this.first_name,
                 last_name: this.last_name,
@@ -51,15 +50,12 @@ export default {
                 password: this.password,
             };
 
-            // Appelle une méthode pour effectuer la requête API pour l'inscription
             axios.post('http://127.0.0.1:8000/api/users', userData)
                 .then(response => {
-                    // Gère la réponse de la requête API en cas de succès
                     console.log('Réponse de l\'inscription :', response.data);
                     this.$emit('close-modal-register');
                 })
                 .catch(error => {
-                    // Gère les erreurs de la requête API
                     console.error('Erreur de l\'inscription :', error);
                 });
         },

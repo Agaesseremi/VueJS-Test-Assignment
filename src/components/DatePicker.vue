@@ -1,6 +1,6 @@
 <template>
     <div class="datepicker flex items-center justify-center">
-        <div class="bg-white lg:flex p-8 rounded shadow-md w-screen">
+        <div class="lg:flex p-8 rounded shadow-md w-screen">
             <div class="w-1/2 lg:w-1/4 mx-auto mb-3">
                 <label for="month" class="block font-bold">Mois :</label>
                 <select id="month" v-model="selectedMonth" class="w-full p-2 rounded border">
@@ -133,8 +133,6 @@ export default {
             }
         },
         async fetchSelectedMonthData() {
-            // Simulating asynchronous data fetching
-            // Replace the following logic with your actual data fetching code
             this.selectedMonthData = {
                 days: Array.from({ length: this.months[this.selectedMonth].days }, (_, i) => i + 1),
             };
@@ -143,4 +141,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.datepicker {
+    background-color: #DBE9F6;
+}
+</style>

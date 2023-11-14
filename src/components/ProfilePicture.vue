@@ -2,20 +2,27 @@
   <div class="container">
     <div class="flex justify-center items-center flex-col">
       <img class="profile-picture" :src="require('../assets/profilePicture.png')" alt="Profile Picture" />
-      <p class="flex-1">{{ $props.user.first_name ? user.first_name : 'Prénom inconnu' }}</p>
-      <p class="flex-1">{{ $props.user.last_name ? user.last_name : 'Nom inconnu' }}</p>
+      <p class="flex-1">{{ userData.first_name ? userData.first_name : 'Prénom inconnu' }}</p>
+      <p class="flex-1">{{ userData.last_name ? userData.last_name : 'Nom inconnu' }}</p>
     </div>
   </div>
 </template>
 
+
 <script>
+import { useStore } from '../Store';
 export default {
   name: 'ProfilePicture',
-  props: {
-    user: Object // Définissez le type de la prop
-  },
-  setup(props) {
-    console.log(props.user); // Log the user prop
+  setup() {
+    const store = useStore();
+    const userData = store.user;
+
+    // Utilisez userData comme vous le souhaitez
+    console.log(userData);
+
+    return {
+      userData
+    };
   }
 }
 </script>

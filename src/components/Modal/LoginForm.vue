@@ -1,7 +1,7 @@
 <template>
     <div class="modal">
         <div class="modal-content bg-white rounded shadow-md p-4 max-w-md w-full">
-            <h2 class="text-2xl font-bold">Connexion</h2>
+            <h2 class="text-2xl mb-2 font-bold">Connexion</h2>
             <form @submit.prevent="handleLogin">
                 <div class="mb-4">
                     <input v-model="email" class="input" placeholder="Email" required>
@@ -44,8 +44,8 @@ export default {
                 const token = response.data.token;
                 localStorage.setItem('token', token);
 
-                // Maintenant, appelez la méthode du store pour récupérer les tâches de l'utilisateur
-                const store = useStore(); // Obtenez une instance de votre store
+
+                const store = useStore();
                 await store.getTasksByUser();
                 store.setIsConnected(true);
                 this.closeModalLogin();

@@ -1,7 +1,8 @@
 <template>
-  <div class="header">
-    <h1>OnGoing</h1>
+  <div class="header flex items-center">
+    <h1>Prendre Rendez-Vous</h1>
     <button @click="openModal"><i class="fa-solid fa-plus fa-xl"></i></button>
+    <h2 class="mx-auto" v-if="selectedDateData">Date: {{ selectedDateData }}</h2>
   </div>
   <TaskForm :showModal="showModal" @close-modal="closeAndHideModal" @api-success="closeAndHideModal" />
   <!-- Hours of the day -->
@@ -12,7 +13,6 @@
         <div v-if="hour > 1"></div>
       </div>
     </div>
-
     <!--div for call TaskCard when in Json -->
     <div v-if="this.store.user && this.store.user.task && this.store.user.task.length > 0" class="days w-4/5 h-40">
       <div class="time" v-for="hour in 24" :key="hour">
@@ -26,7 +26,6 @@
     <div v-else>
       <!-- Affichez un message ou un chargement ici en cas de données vides -->
       <div class="time" v-for="hour in 24" :key="hour">
-        <h1>user Not Connected</h1>
       </div>
     </div>
   </div>
@@ -57,7 +56,6 @@ export default {
     const selectedDay = computed(() => store.selectedDay);
     const selectedMonth = computed(() => store.selectedMonth);
 
-    // Utilize 'ref' for selectedDateData
     const selectedDateData = ref(null);
 
     const filteredTasks = (hour) => {
@@ -73,11 +71,7 @@ export default {
       }
     };
 
-
-    const filteredTaskList = ref([]);
-
     const selectedDate = () => {
-      console.log('ppDate');
       const monthAbbreviations = {
         "Jan": "01",
         "Feb": "02",
@@ -105,7 +99,8 @@ export default {
     watchEffect(() => {
       if (selectedDay.value !== null && selectedMonth.value !== null) {
         selectedDate();
-        filteredTaskList.value = filteredTasks(1); // Example hour, you can replace with the actual hour value
+        store.getTasksByUser();
+
       }
     });
 
@@ -114,8 +109,7 @@ export default {
       selectedDay,
       selectedMonth,
       selectedDateData,
-      filteredTaskList,
-      filteredTasks, // Make filteredTasks accessible from the template
+      filteredTasks,
     };
   },
 
