@@ -122,5 +122,11 @@ export default {
     z-index: 999;
 }
 
+@media screen and (max-width: 400px) {
+    .modal-content {
+        max-width: 90%;
+    }
+}
+
 /* Customize additional styles as needed */
 </style>

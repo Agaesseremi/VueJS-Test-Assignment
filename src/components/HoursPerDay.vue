@@ -1,6 +1,6 @@
 <template>
   <div class="header flex items-center">
-    <h1>Prendre Rendez-Vous</h1>
+    <h1>Prendre Rdv</h1>
     <button @click="openModal"><i class="fa-solid fa-plus fa-xl"></i></button>
     <h2 class="mx-auto" v-if="selectedDateData">Date: {{ selectedDateData }}</h2>
   </div>

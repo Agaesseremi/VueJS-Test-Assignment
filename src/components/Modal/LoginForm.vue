@@ -44,15 +44,16 @@ export default {
                 const token = response.data.token;
                 localStorage.setItem('token', token);
 
-
                 const store = useStore();
                 await store.getTasksByUser();
+
                 store.setIsConnected(true);
                 this.closeModalLogin();
-
                 this.$emit('login-success');
             } catch (error) {
                 console.error('Erreur de la connexion :', error);
+
+
             }
         },
     },
@@ -71,5 +72,11 @@ export default {
     width: 100%;
     height: 100%;
     z-index: 800;
+}
+
+@media screen and (max-width: 400px) {
+    .modal-content {
+        max-width: 90%;
+    }
 }
 </style>

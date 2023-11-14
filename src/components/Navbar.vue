@@ -6,7 +6,7 @@
         <div class="w-1/3 mt-4 flex justify-center">
             <img src="../assets/logo_highday_transp.png" class="w-16 rounded-full border-black border-2 cursor-pointer" />
         </div>
-        <div class="w-1/3">
+        <div class="w-1/3 pt-2">
             <div v-if="isConnected()">
                 <ProfilePicture />
             </div>
@@ -17,9 +17,8 @@
                     class="bg-green-500 text-white rounded mt-2 p-2 mx-2 hover:bg-green-700">Inscription</button>
             </div>
         </div>
-        <LoginForm v-if="showModalLogin" :showModalLogin="showModalLogin" @close-modal-login="closeLoginModal" />
-        <RegisterForm v-if="showModalRegister" :showModalRegister="showModalRegister"
-            @close-modal-register="closeRegisterModal" />
+        <LoginForm v-if="showModalLogin" @close-modal-login="closeLoginModal" />
+        <RegisterForm v-if="showModalRegister" @close-modal-register="closeRegisterModal" />
     </header>
 </template>
 
