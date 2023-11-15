@@ -4,7 +4,6 @@
             <div class="w-1/2 lg:w-1/4 mx-auto mb-3">
                 <label for="month" class="block font-bold">Mois :</label>
                 <select id="month" v-model="selectedMonth" class="w-full p-2 rounded border">
-                    <option value="Jan">Janvier</option>
                     <option v-for="(month, key) in months" :key="key" :value="key">{{ month.name }}</option>
                 </select>
                 <button @click="selectMonth" class="w-full mt-4 bg-blue-500 text-white p-2 rounded hover:bg-blue-700">
@@ -122,14 +121,12 @@ export default {
                 this.isMonthSelected = true;
                 useStore().setMonth(this.selectedMonth);
                 await this.fetchSelectedMonthData();
-                console.log('Selected Month:', this.selectedMonth);
             }
         },
         selectDay() {
             if (this.selectedDay !== '') {
                 this.isDaySelected = true;
                 useStore().setDay(this.selectedDay);
-                console.log('Selected Day:', this.selectedDay);
             }
         },
         async fetchSelectedMonthData() {

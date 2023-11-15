@@ -4,7 +4,8 @@
             <!-- Contenu de la première section de l'en-tête -->
         </div>
         <div class="w-1/3 mt-4 flex justify-center">
-            <img src="../assets/logo_highday_transp.png" class="w-16 rounded-full border-black border-2 cursor-pointer" />
+            <img src="../../assets/logo_highday_transp.png"
+                class="w-16 rounded-full border-black border-2 cursor-pointer" />
         </div>
         <div class="w-1/3 pt-2">
             <div v-if="isConnected()">
@@ -24,9 +25,9 @@
 
 <script>
 import ProfilePicture from './ProfilePicture.vue';
-import LoginForm from './Modal/LoginForm.vue';
-import RegisterForm from './Modal/RegisterForm.vue';
-import { useStore } from '../Store';
+import LoginForm from '../Modal/LoginForm.vue';
+import RegisterForm from '../Modal/RegisterForm.vue';
+import { useStore } from '../../Store';
 import { computed } from 'vue';
 
 
@@ -44,7 +45,6 @@ export default {
         const store = useStore();
         const isConnected = computed(() => store.getIsConnected);
         const user = store.getTasksByUser;
-        console.log(user);
         return {
             isConnected,
             user

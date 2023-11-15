@@ -59,7 +59,6 @@ export default {
     },
     methods: {
         closeModal() {
-            console.log('close modal');
             this.$emit('close-modal');
         },
         submitForm() {
@@ -72,18 +71,12 @@ export default {
                 return;
             }
 
-            console.log('Form Data:', this.formData);
-
-
             const requestData = {
                 title: this.formData.title,
                 date: this.formData.date,
                 start_time: `${this.formData.date} ${this.formData.start_time}:00`,
                 end_time: `${this.formData.date} ${this.formData.end_time}:00`
             };
-
-            console.log('Request Data:', requestData);
-
 
             // Ajoute le token à l'en-tête d'autorisation
             const headers = {

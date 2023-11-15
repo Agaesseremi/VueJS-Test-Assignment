@@ -14,7 +14,8 @@
       </div>
     </div>
     <!--div for call TaskCard when in Json -->
-    <div v-if="this.store.user && this.store.user.task && this.store.user.task.length > 0" class="days w-4/5 h-40">
+    <div v-if="this.store.user && this.store.user.task && this.store.user.task.length > 0"
+      class="days w-4/5 h-40 relative">
       <div class="time" v-for="hour in 24" :key="hour">
         <div v-if="filteredTasks(hour).length > 0">
           <div v-for="task in filteredTasks(hour)" :key="task.id">
@@ -33,9 +34,9 @@
 <script>
 import moment from 'moment';
 import TaskCard from './TaskCard.vue';
-import TaskForm from './Modal/TaskForm.vue';
+import TaskForm from '../Modal/TaskForm.vue';
 import { computed, watchEffect, ref } from 'vue';
-import { useStore } from '../Store';
+import { useStore } from '../../Store';
 
 export default {
   name: 'HoursPerDay',
@@ -92,7 +93,6 @@ export default {
 
       const year = 2023;
       const actualDate = `${year}-${selectedMonthValue}-${selectedDayValue}`;
-      console.log(actualDate);
       selectedDateData.value = actualDate;
     };
 
@@ -137,7 +137,7 @@ h1 {
 }
 
 .time {
-  height: 100px;
+  height: 60px;
   margin-left: 1rem;
 }
 
@@ -159,7 +159,7 @@ h1 {
   /* Rend la div scrollable horizontalement */
   white-space: nowrap;
   /* Empêche le texte de revenir à la ligne */
-  max-height: 31rem;
+  max-height: 28.8rem;
   scrollbar-width: none;
   /* Supprime complètement la barre de défilement (Firefox) */
 }

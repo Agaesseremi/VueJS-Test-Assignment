@@ -7,9 +7,9 @@
 </template>
 
 <script>
-import HoursPerDay from './components/HoursPerDay.vue';
+import HoursPerDay from './components/Calendar/HoursPerDay.vue';
 import DatePicker from './components/DatePicker.vue';
-import Navbar from './components/Navbar.vue';
+import Navbar from './components/Navbar/Navbar.vue';
 import { useStore } from './Store';
 
 export default {
@@ -34,11 +34,6 @@ export default {
 </script>
 
 <style scoped>
-/* * {
-  box-shadow: 0 0 0 3px red;
-
-} */
-
 .app {
   background-color: #DBE9F6;
   color: #000;
